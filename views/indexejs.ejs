@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- we use this include method to avoid writing the code repeatedly with the help of partials -->
+    <%- include('./partials/head.ejs') %>
+</head>
+<body>
+    
+    <!-- we can pass the file here with its relative path -->
+    <!-- use - with ejs tag method-->
+    <!-- with this we can get rid of repeating code -->
+    <%-include('./partials/nav.ejs')  %>
+
+    <div class="blogs content ">
+        <h2>All Blogs</h2>
+
+          <div class="maindiv">
+        <% if (blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+           <div class="singlediv">
+            <a class="single" href="/blogs/<%= blog._id %> ">
+              <h3 class="title"><%= blog.title %></h3>
+              <p class="snippet"><%= blog.snippet %></p>
+            </a>
+           </div>
+            <% }) %>
+          <% } else { %>
+            <p>There are no blogs to display...</p>
+          <% } %>
+        </div>
+
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+
+</body>
+</html>
